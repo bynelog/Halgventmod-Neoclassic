@@ -1,9 +1,12 @@
 package com.nrdhvnstd.halgventmod.name;
 
+import javax.annotation.Nullable;
+
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.nrdhvnstd.halgventmod.HalgventMod;
+import com.nrdhvnstd.halgventmod.Permissions;
 import com.nrdhvnstd.halgventmod.client.RpNameClient;
 import com.nrdhvnstd.halgventmod.registry.ModAttachments;
 import com.nrdhvnstd.halgventmod.squad.SquadSync;
@@ -26,10 +29,11 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
  * и в сообщениях игры (вход, выход, смерть). Настоящий ник остаётся для команд
  * и виден при наведении на имя в чате.
  *
+ * Игрок выбирает имя при создании персонажа (CharacterCreation): только кириллица и римские числа из I, V, X.
+ * Команда — только администрации, свободнее (латиница тоже можно):
  * /nick           — своё текущее имя
  * /nick <имя>     — сменить имя (кириллица, латиница, пробел, дефис, апостроф; 2–32 знака)
  * /nick reset     — вернуть настоящий ник
- * Доступно всем игрокам, без перезарядки.
  */
 @EventBusSubscriber(modid = HalgventMod.MODID)
 public final class RpNames {
@@ -83,6 +87,7 @@ public final class RpNames {
     @SubscribeEvent
     public static void registerCommand(RegisterCommandsEvent event) {
         event.getDispatcher().register(Commands.literal("nick")
+                .requires(source -> source.hasPermission(Permissions.ADMIN_LEVEL))
                 .executes(context -> show(context.getSource().getPlayerOrException()))
                 .then(Commands.literal("reset")
                         .executes(context -> set(context.getSource(), "")))
@@ -114,21 +119,26 @@ public final class RpNames {
 
     private static int set(CommandSourceStack source, String name) throws CommandSyntaxException {
         ServerPlayer player = source.getPlayerOrException();
-        player.setData(ModAttachments.RP_NAME, name);
-        player.syncData(ModAttachments.RP_NAME);
-        player.refreshDisplayName();
-        player.refreshTabListName();
-        SquadSync.changed(player.server); // имя в окне «Отряд» у товарищей
+        apply(player, name);
         source.sendSuccess(() -> name.isEmpty()
                 ? Component.translatable("command.halgventmod.nick.reset")
                 : Component.translatable("command.halgventmod.nick.set", name), false);
         return 1;
     }
 
+    /** Записать имя (пустое — настоящий ник) и разослать всем. */
+    public static void apply(ServerPlayer player, String name) {
+        player.setData(ModAttachments.RP_NAME, name);
+        player.syncData(ModAttachments.RP_NAME);
+        player.refreshDisplayName();
+        player.refreshTabListName();
+        SquadSync.changed(player.server); // имя в окне «Отряд» у товарищей
+    }
+
     // ----- Проверка имени -----
 
     /** Пробелы по краям убраны, несколько пробелов подряд — один. */
-    static String normalize(String name) {
+    public static String normalize(String name) {
         return name.trim().replaceAll("\\s+", " ");
     }
 
@@ -140,5 +150,36 @@ public final class RpNames {
         return name.codePoints().allMatch(c -> c == ' ' || c == '-' || c == '\'' || c == '’'
                 || Character.isLetter(c) && (Character.UnicodeScript.of(c) == Character.UnicodeScript.CYRILLIC
                         || Character.UnicodeScript.of(c) == Character.UnicodeScript.LATIN));
+    }
+
+    /**
+     * Имя персонажа (геймдок 3.1): слова через пробел или дефис; слово — кириллица (апостроф внутри можно)
+     * или римское число из I, V, X («Гюнтер III»). Первое слово — кириллица.
+     * null — имя годится, иначе ключ ошибки: name_length или name_characters.
+     */
+    @Nullable
+    public static String characterNameError(String name) {
+        if (name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {
+            return "name_length";
+        }
+        String[] words = name.split("[ -]", -1);
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (word.isEmpty()) {
+                return "name_characters"; // два разделителя подряд или по краю
+            }
+            if (i > 0 && word.chars().allMatch(c -> c == 'I' || c == 'V' || c == 'X')) {
+                continue;
+            }
+            if (!cyrillicLetter(word.codePointAt(0)) || !cyrillicLetter(word.codePointBefore(word.length()))
+                    || !word.codePoints().allMatch(c -> cyrillicLetter(c) || c == '\'' || c == '’')) {
+                return "name_characters";
+            }
+        }
+        return null;
+    }
+
+    private static boolean cyrillicLetter(int c) {
+        return Character.isLetter(c) && Character.UnicodeScript.of(c) == Character.UnicodeScript.CYRILLIC;
     }
 }

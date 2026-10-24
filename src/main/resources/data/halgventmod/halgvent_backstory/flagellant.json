@@ -1,0 +1,17 @@
+{
+  "order": 8,
+  "armor": [],
+  "items": [
+    {
+      "id": "halgventmod:herbal_tea",
+      "components": {
+        "halgventmod:herb": "wormwood",
+        "minecraft:item_name": "{\"translate\": \"item.halgventmod.herbal_tea.wormwood\"}"
+      }
+    },
+    {
+      "id": "halgventmod:rye_bread",
+      "count": 2
+    }
+  ]
+}

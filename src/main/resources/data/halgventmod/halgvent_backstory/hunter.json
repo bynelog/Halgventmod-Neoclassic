@@ -1,0 +1,37 @@
+{
+  "order": 10,
+  "armor": [
+    {
+      "id": "halgventmod:hood"
+    },
+    {
+      "id": "halgventmod:woolen_cloak"
+    },
+    {
+      "id": "halgventmod:archer_gloves"
+    }
+  ],
+  "items": [
+    {
+      "id": "minecraft:bow"
+    },
+    {
+      "id": "minecraft:arrow",
+      "count": 12
+    },
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:smoked_meat",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:herb_powder",
+      "components": {
+        "halgventmod:herb": "yarrow",
+        "minecraft:item_name": "{\"translate\": \"item.halgventmod.herb_powder.yarrow\"}"
+      }
+    }
+  ]
+}

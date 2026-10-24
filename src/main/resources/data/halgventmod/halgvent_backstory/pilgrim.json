@@ -1,0 +1,31 @@
+{
+  "order": 4,
+  "armor": [
+    {
+      "id": "halgventmod:hood"
+    },
+    {
+      "id": "halgventmod:woolen_cloak"
+    }
+  ],
+  "items": [
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:herbal_tea",
+      "components": {
+        "halgventmod:herb": "chamomile",
+        "minecraft:item_name": "{\"translate\": \"item.halgventmod.herbal_tea.chamomile\"}"
+      }
+    },
+    {
+      "id": "halgventmod:rye_bread",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:dried_mushrooms",
+      "count": 3
+    }
+  ]
+}

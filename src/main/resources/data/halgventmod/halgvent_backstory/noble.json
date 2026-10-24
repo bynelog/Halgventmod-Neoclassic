@@ -1,0 +1,32 @@
+{
+  "order": 9,
+  "armor": [
+    {
+      "id": "halgventmod:chaperon"
+    },
+    {
+      "id": "halgventmod:pourpoint"
+    },
+    {
+      "id": "halgventmod:fine_cloak"
+    }
+  ],
+  "items": [
+    {
+      "id": "minecraft:iron_sword"
+    },
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:meat_pie"
+    },
+    {
+      "id": "halgventmod:wine"
+    },
+    {
+      "id": "halgventmod:coin_taler",
+      "count": 2
+    }
+  ]
+}

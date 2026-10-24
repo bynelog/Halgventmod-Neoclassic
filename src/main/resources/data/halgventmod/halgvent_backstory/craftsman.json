@@ -1,0 +1,33 @@
+{
+  "order": 3,
+  "armor": [
+    {
+      "id": "halgventmod:chaperon"
+    },
+    {
+      "id": "halgventmod:rawhide_mittens"
+    }
+  ],
+  "items": [
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:fleshing_knife"
+    },
+    {
+      "id": "halgventmod:needle"
+    },
+    {
+      "id": "halgventmod:threads",
+      "count": 3
+    },
+    {
+      "id": "halgventmod:wheat_bread",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:cheese"
+    }
+  ]
+}

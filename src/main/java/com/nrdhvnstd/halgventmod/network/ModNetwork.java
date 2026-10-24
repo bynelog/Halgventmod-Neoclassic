@@ -6,7 +6,7 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 /** Пакеты между клиентом и сервером. */
 public final class ModNetwork {
-    private static final String VERSION = "23"; // 23: кузнечество (удар по жиле, мини-игры, молотобоец); 22: распил и работа на верстаке плотника; 21: шитейный стол, раскрой; 20: окно тканья; 19: книга выкроек портного; 18: гончарный круг; 17: окно рецептов кухонного стола; 16: окна шитья и выкроек кожевника; 15: замах в воздух; 14: гербовник (названия книг, содержимое, правка); 13: у точки значок до открытия, текст при наведении, описание, знамя, сведения; 12: окно реестра знамён; 11: реестр знамён; 10: забрало; 9: рассвет своим пакетом; 8: точки карты; 7: вещь с курсора каталога в инвентарь; 6: ручной подбор; 5: концепт инвентаря (снаряжение, сумки); 4: ники, очистка инвентаря, отряды
+    private static final String VERSION = "24"; // 24: создание персонажа, точки появления; 23: кузнечество (удар по жиле, мини-игры, молотобоец); 22: распил и работа на верстаке плотника; 21: шитейный стол, раскрой; 20: окно тканья; 19: книга выкроек портного; 18: гончарный круг; 17: окно рецептов кухонного стола; 16: окна шитья и выкроек кожевника; 15: замах в воздух; 14: гербовник (названия книг, содержимое, правка); 13: у точки значок до открытия, текст при наведении, описание, знамя, сведения; 12: окно реестра знамён; 11: реестр знамён; 10: забрало; 9: рассвет своим пакетом; 8: точки карты; 7: вещь с курсора каталога в инвентарь; 6: ручной подбор; 5: концепт инвентаря (снаряжение, сумки); 4: ники, очистка инвентаря, отряды
 
     private ModNetwork() {}
 
@@ -65,5 +65,8 @@ public final class ModNetwork {
         registrar.playToServer(SmithResultPayload.TYPE, SmithResultPayload.STREAM_CODEC, SmithResultPayload::handle);
         registrar.playToServer(StrikerHitPayload.TYPE, StrikerHitPayload.STREAM_CODEC, StrikerHitPayload::handle);
         registrar.playToClient(StrikerBlowPayload.TYPE, StrikerBlowPayload.STREAM_CODEC, StrikerBlowPayload::handle);
+        registrar.playToClient(CharacterOpenPayload.TYPE, CharacterOpenPayload.STREAM_CODEC, CharacterOpenPayload::handle);
+        registrar.playToServer(CharacterCreatePayload.TYPE, CharacterCreatePayload.STREAM_CODEC, CharacterCreatePayload::handle);
+        registrar.playToClient(CharacterResultPayload.TYPE, CharacterResultPayload.STREAM_CODEC, CharacterResultPayload::handle);
     }
 }

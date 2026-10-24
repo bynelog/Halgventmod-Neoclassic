@@ -1,0 +1,27 @@
+{
+  "order": 2,
+  "armor": [
+    {
+      "id": "halgventmod:hood"
+    }
+  ],
+  "items": [
+    {
+      "id": "halgventmod:sickle"
+    },
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:rye_bread",
+      "count": 3
+    },
+    {
+      "id": "halgventmod:turnip",
+      "count": 3
+    },
+    {
+      "id": "halgventmod:cider"
+    }
+  ]
+}

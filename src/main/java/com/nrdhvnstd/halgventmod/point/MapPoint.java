@@ -56,6 +56,8 @@ public final class MapPoint {
     public String description = "";
     /** Нижний блок «Сведения»; строка «Слово: текст» рисует слово тусклым. */
     public String info = "";
+    /** Точка появления: новый персонаж может начать здесь (CharacterCreation). */
+    public boolean spawn;
     public Shape shape = Shape.CIRCLE;
     public int radius = DEFAULT_SIZE;
     public List<Integer> xs = new ArrayList<>();
@@ -77,6 +79,7 @@ public final class MapPoint {
         copy.banner = banner;
         copy.description = description;
         copy.info = info;
+        copy.spawn = spawn;
         copy.shape = shape;
         copy.radius = radius;
         copy.xs = new ArrayList<>(xs);
@@ -164,6 +167,7 @@ public final class MapPoint {
         buf.writeUtf(banner, BannerEntry.ID_MAX);
         buf.writeUtf(description, DESCRIPTION_MAX * 4);
         buf.writeUtf(info, INFO_MAX * 4);
+        buf.writeBoolean(spawn);
         buf.writeEnum(shape);
         buf.writeVarInt(radius);
         int count = Math.min(xs.size(), MAX_VERTICES);
@@ -190,6 +194,7 @@ public final class MapPoint {
         point.banner = buf.readUtf(BannerEntry.ID_MAX);
         point.description = buf.readUtf(DESCRIPTION_MAX * 4);
         point.info = buf.readUtf(INFO_MAX * 4);
+        point.spawn = buf.readBoolean();
         point.shape = buf.readEnum(Shape.class);
         point.radius = buf.readVarInt();
         int count = Math.min(buf.readVarInt(), MAX_VERTICES);
@@ -216,6 +221,7 @@ public final class MapPoint {
         tag.putString("banner", banner);
         tag.putString("description", description);
         tag.putString("info", info);
+        tag.putBoolean("spawn", spawn);
         tag.putString("shape", shape.name());
         tag.putInt("radius", radius);
         tag.put("xs", new IntArrayTag(xs.stream().mapToInt(Integer::intValue).toArray()));
@@ -243,6 +249,7 @@ public final class MapPoint {
         point.banner = tag.getString("banner");
         point.description = tag.getString("description");
         point.info = tag.getString("info");
+        point.spawn = tag.getBoolean("spawn");
         point.shape = "POLYGON".equals(tag.getString("shape")) ? Shape.POLYGON : Shape.CIRCLE;
         point.radius = tag.getInt("radius");
         for (int value : tag.getIntArray("xs")) {

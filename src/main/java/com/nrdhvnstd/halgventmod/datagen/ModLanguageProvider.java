@@ -625,6 +625,7 @@ public class ModLanguageProvider extends LanguageProvider {
         alchemyTranslations();
         glassTranslations();
         recipeTabsTranslations();
+        characterTranslations();
         SmithingLang.add((key, ru, en) -> add(key, russian ? ru : en));
     }
 
@@ -1836,6 +1837,126 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private void carpentry(String key, String ru, String en) {
         add("message.halgventmod.carpentry." + key, russian ? ru : en);
+    }
+
+    // Создание персонажа: окно, облик, предыстории, команда /character
+    private void characterTranslations() {
+        add("gui.halgventmod.creation.title", russian ? "Создание персонажа" : "Character Creation");
+        add("gui.halgventmod.creation.step.appearance", russian ? "Облик" : "Appearance");
+        add("gui.halgventmod.creation.step.backstory", russian ? "Предыстория" : "Backstory");
+        add("gui.halgventmod.creation.step.spawn", russian ? "Точка появления" : "Starting Point");
+        add("gui.halgventmod.creation.step.summary", russian ? "Итог" : "Summary");
+        add("gui.halgventmod.creation.step.name", russian ? "Имя" : "Name");
+        add("gui.halgventmod.creation.back", russian ? "Назад" : "Back");
+        add("gui.halgventmod.creation.next", russian ? "Далее" : "Next");
+        add("gui.halgventmod.creation.enter", russian ? "Войти в мир" : "Enter the World");
+        add("gui.halgventmod.creation.random", russian ? "Случайный облик" : "Random Look");
+        add("gui.halgventmod.creation.kit", russian ? "Комплект:" : "Starting kit:");
+        add("gui.halgventmod.creation.backstory.hint", russian ? "Выберите, кем был ваш персонаж до начала пути. От этого зависит, с чем он начнёт." : "Choose who your character was before the journey. It decides what they start with.");
+        add("gui.halgventmod.creation.backstory.none", russian ? "Предыстории не найдены: персонаж начнёт без комплекта." : "No backstories found: the character starts without a kit.");
+        add("gui.halgventmod.creation.spawn.hint", russian ? "Выберите, где начнётся ваш путь." : "Choose where your journey begins.");
+        add("gui.halgventmod.creation.spawn.none", russian ? "Места появления пока не назначены: вы начнёте там, где стоите." : "No starting points have been set yet: you will start where you stand.");
+        add("gui.halgventmod.creation.summary.backstory", russian ? "Предыстория: %s" : "Backstory: %s");
+        add("gui.halgventmod.creation.summary.no_backstory", russian ? "нет" : "none");
+        add("gui.halgventmod.creation.summary.spawn", russian ? "Точка появления: %s" : "Starting point: %s");
+        add("gui.halgventmod.creation.summary.spawn_here", russian ? "там, где стоите" : "where you stand");
+        add("gui.halgventmod.creation.name.label", russian ? "Имя персонажа" : "Character name");
+        add("gui.halgventmod.creation.name.hint", russian ? "Только кириллица; слова через пробел или дефис. После имени можно римское число из I, V и X — например, «Гюнтер III». От %s до %s знаков." : "Cyrillic letters only; words separated by spaces or hyphens. A Roman numeral of I, V and X may follow the name, e.g. «Гюнтер III». %s to %s characters.");
+        add("gui.halgventmod.creation.name.edit", russian ? "Снаряжение и место у персонажа останутся прежними: меняются только облик и имя." : "Your gear and location stay the same: only the look and name change.");
+        add("gui.halgventmod.creation.error.appearance", russian ? "Облик не принят: выберите его заново." : "The look was not accepted: choose it again.");
+        add("gui.halgventmod.creation.error.backstory", russian ? "Такой предыстории больше нет: выберите другую." : "That backstory no longer exists: choose another.");
+        add("gui.halgventmod.creation.error.spawn", russian ? "Такой точки появления больше нет: выберите другую." : "That starting point no longer exists: choose another.");
+        add("gui.halgventmod.creation.error.name_length", russian ? "Имя должно быть от 2 до 32 знаков." : "The name must be 2 to 32 characters long.");
+        add("gui.halgventmod.creation.error.name_characters", russian ? "В имени только кириллица, пробел и дефис между словами; римское число из I, V, X — после имени." : "Only Cyrillic letters, with spaces or hyphens between words; a Roman numeral of I, V, X may follow the name.");
+        add("gui.halgventmod.point.spawn", russian ? "Точка появления" : "Starting point");
+        add("gui.halgventmod.point.spawn.tooltip", russian ? "Новые персонажи смогут выбрать это место, чтобы начать игру здесь." : "New characters can pick this place to start the game here.");
+        add("appearance.halgventmod.sex", russian ? "Пол" : "Sex");
+        add("appearance.halgventmod.sex.male", russian ? "Мужской" : "Male");
+        add("appearance.halgventmod.sex.female", russian ? "Женский" : "Female");
+        add("appearance.halgventmod.age", russian ? "Возраст" : "Age");
+        add("appearance.halgventmod.age.young", russian ? "Молодой" : "Young");
+        add("appearance.halgventmod.age.mature", russian ? "Зрелый" : "Mature");
+        add("appearance.halgventmod.age.old", russian ? "Пожилой" : "Old");
+        add("appearance.halgventmod.build", russian ? "Телосложение" : "Build");
+        add("appearance.halgventmod.build.sturdy", russian ? "Крепкое" : "Sturdy");
+        add("appearance.halgventmod.build.slim", russian ? "Худощавое" : "Slim");
+        add("appearance.halgventmod.skin", russian ? "Цвет кожи" : "Skin");
+        add("appearance.halgventmod.skin.pale", russian ? "Бледная" : "Pale");
+        add("appearance.halgventmod.skin.fair", russian ? "Светлая" : "Fair");
+        add("appearance.halgventmod.skin.ruddy", russian ? "Румяная" : "Ruddy");
+        add("appearance.halgventmod.skin.olive", russian ? "Смуглая" : "Olive");
+        add("appearance.halgventmod.skin.tan", russian ? "Загорелая" : "Tanned");
+        add("appearance.halgventmod.skin.dark", russian ? "Тёмная" : "Dark");
+        add("appearance.halgventmod.eyes", russian ? "Глаза" : "Eyes");
+        add("appearance.halgventmod.eyes.blue", russian ? "Голубые" : "Blue");
+        add("appearance.halgventmod.eyes.grey", russian ? "Серые" : "Grey");
+        add("appearance.halgventmod.eyes.green", russian ? "Зелёные" : "Green");
+        add("appearance.halgventmod.eyes.hazel", russian ? "Ореховые" : "Hazel");
+        add("appearance.halgventmod.eyes.brown", russian ? "Карие" : "Brown");
+        add("appearance.halgventmod.eyes.dark", russian ? "Тёмные" : "Dark");
+        add("appearance.halgventmod.hair", russian ? "Причёска" : "Hair");
+        add("appearance.halgventmod.hair.bald", russian ? "Лысый" : "Bald");
+        add("appearance.halgventmod.hair.short", russian ? "Короткая" : "Short");
+        add("appearance.halgventmod.hair.bowl", russian ? "Под горшок" : "Bowl cut");
+        add("appearance.halgventmod.hair.long", russian ? "Длинная" : "Long");
+        add("appearance.halgventmod.hair.braid", russian ? "Коса" : "Braid");
+        add("appearance.halgventmod.hair_color", russian ? "Цвет волос" : "Hair colour");
+        add("appearance.halgventmod.hair_color.black", russian ? "Чёрные" : "Black");
+        add("appearance.halgventmod.hair_color.dark_brown", russian ? "Тёмно-русые" : "Dark brown");
+        add("appearance.halgventmod.hair_color.brown", russian ? "Русые" : "Brown");
+        add("appearance.halgventmod.hair_color.red", russian ? "Рыжие" : "Red");
+        add("appearance.halgventmod.hair_color.blond", russian ? "Светлые" : "Blond");
+        add("appearance.halgventmod.hair_color.ash", russian ? "Пепельные" : "Ash");
+        add("appearance.halgventmod.beard", russian ? "Борода" : "Beard");
+        add("appearance.halgventmod.beard.none", russian ? "Нет" : "None");
+        add("appearance.halgventmod.beard.stubble", russian ? "Щетина" : "Stubble");
+        add("appearance.halgventmod.beard.mustache", russian ? "Усы" : "Moustache");
+        add("appearance.halgventmod.beard.short", russian ? "Короткая" : "Short");
+        add("appearance.halgventmod.beard.full", russian ? "Окладистая" : "Full");
+        add("appearance.halgventmod.beard.long", russian ? "Длинная" : "Long");
+        add("appearance.halgventmod.scar", russian ? "Шрам" : "Scar");
+        add("appearance.halgventmod.scar.none", russian ? "Нет" : "None");
+        add("appearance.halgventmod.scar.cheek", russian ? "На щеке" : "Cheek");
+        add("appearance.halgventmod.scar.brow", russian ? "Через бровь" : "Across the brow");
+        add("appearance.halgventmod.scar.lip", russian ? "На губе" : "Lip");
+        add("appearance.halgventmod.scar.eye", russian ? "Через глаз" : "Across the eye");
+        add("appearance.halgventmod.tattoo", russian ? "Татуировка" : "Tattoo");
+        add("appearance.halgventmod.tattoo.none", russian ? "Нет" : "None");
+        add("appearance.halgventmod.tattoo.cheek", russian ? "Узор на щеке" : "Cheek pattern");
+        add("appearance.halgventmod.tattoo.brow", russian ? "Знак на лбу" : "Forehead sign");
+        add("appearance.halgventmod.tattoo.chin", russian ? "Полосы на подбородке" : "Chin stripes");
+        add("appearance.halgventmod.voice", russian ? "Голос" : "Voice");
+        add("appearance.halgventmod.voice.male_1", russian ? "Мужской I" : "Male I");
+        add("appearance.halgventmod.voice.male_2", russian ? "Мужской II" : "Male II");
+        add("appearance.halgventmod.voice.male_3", russian ? "Мужской III" : "Male III");
+        add("appearance.halgventmod.voice.female_1", russian ? "Женский I" : "Female I");
+        add("appearance.halgventmod.voice.female_2", russian ? "Женский II" : "Female II");
+        add("backstory.halgventmod.mercenary", russian ? "Наёмник" : "Mercenary");
+        add("backstory.halgventmod.mercenary.desc", russian ? "Вольный солдат, идущий к своей мечте с мечом в руке." : "A free soldier walking toward his dream, sword in hand.");
+        add("backstory.halgventmod.peasant", russian ? "Крестьянин" : "Peasant");
+        add("backstory.halgventmod.peasant.desc", russian ? "Раб полей и мельниц, мужественно выдерживающий удары судьбы." : "A slave of fields and mills who bravely weathers the blows of fate.");
+        add("backstory.halgventmod.craftsman", russian ? "Ремесленник" : "Craftsman");
+        add("backstory.halgventmod.craftsman.desc", russian ? "На все руки мастер, гниющий за стенами города." : "A jack of all trades, rotting behind the city walls.");
+        add("backstory.halgventmod.pilgrim", russian ? "Пилигрим" : "Pilgrim");
+        add("backstory.halgventmod.pilgrim.desc", russian ? "Благоверующий странник, который не властен даже над своей судьбой." : "A devout wanderer with no power even over his own fate.");
+        add("backstory.halgventmod.minstrel", russian ? "Менестрель" : "Minstrel");
+        add("backstory.halgventmod.minstrel.desc", russian ? "Весёлый актёр и поэт, ублажающий богатых дам." : "A merry actor and poet who pleases wealthy ladies.");
+        add("backstory.halgventmod.jester", russian ? "Шут" : "Jester");
+        add("backstory.halgventmod.jester.desc", russian ? "Весельчак и добряк, ввергающий людей в трагедию одним словом." : "A kind-hearted joker who plunges people into tragedy with a single word.");
+        add("backstory.halgventmod.deserter", russian ? "Дезертир" : "Deserter");
+        add("backstory.halgventmod.deserter.desc", russian ? "Трус, бежавший с поля боя, спасая свою никчёмную жизнь." : "A coward who fled the battlefield to save his worthless life.");
+        add("backstory.halgventmod.flagellant", russian ? "Флагеллянт" : "Flagellant");
+        add("backstory.halgventmod.flagellant.desc", russian ? "Бесстрашный верун." : "A fearless zealot.");
+        add("backstory.halgventmod.noble", russian ? "Дворянин" : "Noble");
+        add("backstory.halgventmod.noble.desc", russian ? "Человек чести и славы посреди многолюдья смуты." : "A man of honour and glory amid the crowds of turmoil.");
+        add("backstory.halgventmod.hunter", russian ? "Охотник" : "Hunter");
+        add("backstory.halgventmod.hunter.desc", russian ? "Терпеливый и упёртый егерь, готовый сразить любого зверя." : "A patient, stubborn huntsman ready to bring down any beast.");
+        add("backstory.halgventmod.fisher", russian ? "Рыбак" : "Fisherman");
+        add("backstory.halgventmod.fisher.desc", russian ? "Простой рыбак, прожигающий свою жизнь перед неодолимой стихией." : "A simple fisherman burning his life away before the unconquerable elements.");
+        add("backstory.halgventmod.savage", russian ? "Дикарь" : "Savage");
+        add("backstory.halgventmod.savage.desc", russian ? "Господин своей вольной земли, древний нравами и обычаями." : "Lord of his own free land, ancient in manners and customs.");
+        add("command.halgventmod.character.reset", russian ? "%s создаёт персонажа заново" : "%s is creating their character anew");
+        add("command.halgventmod.character.edit", russian ? "%s выбирает облик и имя заново" : "%s is choosing their look and name anew");
     }
 
     private void gui(String key, String ru, String en) {

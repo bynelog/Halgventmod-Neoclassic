@@ -1,0 +1,20 @@
+{
+  "order": 6,
+  "armor": [
+    {
+      "id": "halgventmod:hood"
+    }
+  ],
+  "items": [
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:berry_pie"
+    },
+    {
+      "id": "halgventmod:cider",
+      "count": 2
+    }
+  ]
+}

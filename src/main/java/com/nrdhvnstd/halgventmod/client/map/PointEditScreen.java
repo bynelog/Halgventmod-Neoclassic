@@ -22,6 +22,7 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Checkbox;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.MultiLineEditBox;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -101,6 +102,7 @@ public class PointEditScreen extends Screen {
     private EditBox zBox;
     private MultiLineEditBox hoverBox;
     private Checkbox describedBox;
+    private Checkbox spawnBox;
     private MultiLineEditBox descriptionBox;
     private MultiLineEditBox infoBox;
     private Button registryButton;
@@ -146,6 +148,12 @@ public class PointEditScreen extends Screen {
                 .selected(described)
                 .onValueChange((box, value) -> updateDescribed())
                 .build());
+        boolean spawn = spawnBox != null ? spawnBox.selected() : point.spawn;
+        spawnBox = addRenderableWidget(Checkbox.builder(Component.translatable("gui.halgventmod.point.spawn"), font)
+                .pos(right + COLUMN / 2, top + 24)
+                .selected(spawn)
+                .build());
+        spawnBox.setTooltip(Tooltip.create(Component.translatable("gui.halgventmod.point.spawn.tooltip")));
         registryButton = addRenderableWidget(Button.builder(Component.translatable("gui.halgventmod.point.all_banners"),
                         button -> minecraft.setScreen(BannerRegistryScreen.pick(this, id -> banner = id)))
                 .bounds(right + COLUMN - REGISTRY_BUTTON_WIDTH, top + BANNER_ROW_TOP + 10, REGISTRY_BUTTON_WIDTH, 20).build());
@@ -250,6 +258,7 @@ public class PointEditScreen extends Screen {
         point.dye = dye.getSerializedName();
         point.hoverText = hoverBox.getValue().strip();
         point.described = describedBox.selected();
+        point.spawn = spawnBox.selected();
         point.banner = banner;
         point.description = descriptionBox.getValue().strip();
         point.info = infoBox.getValue().strip();

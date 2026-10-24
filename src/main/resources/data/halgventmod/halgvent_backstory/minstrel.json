@@ -1,0 +1,26 @@
+{
+  "order": 5,
+  "armor": [
+    {
+      "id": "halgventmod:chaperon"
+    },
+    {
+      "id": "halgventmod:fine_cloak"
+    }
+  ],
+  "items": [
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:wine"
+    },
+    {
+      "id": "halgventmod:sweet_bun",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:cheese"
+    }
+  ]
+}

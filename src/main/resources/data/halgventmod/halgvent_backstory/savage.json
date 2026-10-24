@@ -1,0 +1,22 @@
+{
+  "order": 12,
+  "armor": [
+    {
+      "id": "halgventmod:cale"
+    },
+    {
+      "id": "halgventmod:wendish_helmet"
+    },
+    {
+      "id": "halgventmod:fur_cloak"
+    }
+  ],
+  "items": [
+    {
+      "id": "minecraft:shield"
+    },
+    {
+      "id": "halgventmod:hare_with_herbs"
+    }
+  ]
+}

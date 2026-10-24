@@ -1,0 +1,27 @@
+{
+  "order": 7,
+  "armor": [
+    {
+      "id": "halgventmod:cale"
+    },
+    {
+      "id": "halgventmod:simple_aketon",
+      "wear": 0.5
+    },
+    {
+      "id": "halgventmod:simple_surcoat"
+    }
+  ],
+  "items": [
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:salted_meat",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:spirit"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ package com.nrdhvnstd.halgventmod.registry;
 import java.util.List;
 
 import com.nrdhvnstd.halgventmod.HalgventMod;
+import com.nrdhvnstd.halgventmod.character.CharacterData;
 import com.nrdhvnstd.halgventmod.brewing.Intoxication;
 import com.nrdhvnstd.halgventmod.armor.ArmorInventory;
 import com.nrdhvnstd.halgventmod.draw.Drawing;
@@ -95,6 +96,15 @@ public final class ModAttachments {
                     .serialize(Codec.STRING)
                     .copyOnDeath()
                     .sync(RpNames.SYNC)
+                    .build());
+
+    // Персонаж: создан ли, облик и предыстория (CharacterCreation). Сохраняется, переживает смерть; облик видят все.
+    // Нет вложения — игрок ещё не входил после появления создания персонажа.
+    public static final DeferredHolder<AttachmentType<?>, AttachmentType<CharacterData>> CHARACTER =
+            ATTACHMENTS.register("character", () -> AttachmentType.builder(() -> CharacterData.NONE)
+                    .serialize(CharacterData.CODEC)
+                    .copyOnDeath()
+                    .sync(CharacterData.SYNC)
                     .build());
 
     // Открытые игроком точки карты (MapPoints). Сохраняется, переживает смерть; клиенту — PointsDiscoveredPayload.

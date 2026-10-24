@@ -1,0 +1,27 @@
+{
+  "order": 11,
+  "armor": [
+    {
+      "id": "halgventmod:hood"
+    }
+  ],
+  "items": [
+    {
+      "id": "minecraft:fishing_rod"
+    },
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:smoked_fish",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:rye_bread",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:beer"
+    }
+  ]
+}

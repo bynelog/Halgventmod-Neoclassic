@@ -1,0 +1,33 @@
+{
+  "order": 1,
+  "armor": [
+    {
+      "id": "halgventmod:cale"
+    },
+    {
+      "id": "halgventmod:kettle_hat"
+    },
+    {
+      "id": "halgventmod:gambeson"
+    }
+  ],
+  "items": [
+    {
+      "id": "minecraft:iron_sword"
+    },
+    {
+      "id": "halgventmod:knife"
+    },
+    {
+      "id": "halgventmod:rye_bread",
+      "count": 2
+    },
+    {
+      "id": "halgventmod:beer"
+    },
+    {
+      "id": "halgventmod:coin_marka",
+      "count": 3
+    }
+  ]
+}

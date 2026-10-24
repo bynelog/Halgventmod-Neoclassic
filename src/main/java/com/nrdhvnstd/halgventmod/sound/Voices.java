@@ -7,6 +7,9 @@ import java.util.Set;
 import javax.annotation.Nullable;
 
 import com.nrdhvnstd.halgventmod.HalgventMod;
+import com.nrdhvnstd.halgventmod.character.Appearance;
+import com.nrdhvnstd.halgventmod.character.CharacterData;
+import com.nrdhvnstd.halgventmod.registry.ModAttachments;
 import com.nrdhvnstd.halgventmod.registry.ModSounds;
 
 import net.minecraft.core.Holder;
@@ -20,7 +23,7 @@ import net.minecraft.world.entity.player.Player;
  * поэтому состав наборов пока списком здесь; позже его заменят assets/halgventmod/voices/<id>.json.
  */
 public final class Voices {
-    public static final String DEFAULT_SET = "male_1"; // ⚠️ у всех, пока нет выбора голоса /voice
+    public static final String DEFAULT_SET = "male_1"; // пока персонаж не создан
 
     /** Вид крика. Субтитр один на вид для всех наборов: subtitles.halgventmod.voice.<вид>. */
     public enum Cry {
@@ -70,9 +73,11 @@ public final class Voices {
 
     private Voices() {}
 
-    /** Набор голоса игрока. Пока у всех один; потом — из вложения игрока (/voice). */
+    /** Набор голоса игрока: выбран в облике при создании персонажа (Appearance.Part.VOICE). */
     public static String setOf(Player player) {
-        return DEFAULT_SET;
+        CharacterData data = player.getExistingDataOrNull(ModAttachments.CHARACTER);
+        String voice = data == null ? "" : data.appearance().getOrDefault(Appearance.Part.VOICE.id(), "");
+        return SETS.containsKey(voice) ? voice : DEFAULT_SET;
     }
 
     public static boolean has(String set, Cry cry) {
